@@ -1,76 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="CSS/flexboxgrid.css">
-<link rel="stylesheet" type="text/css" href="CSS/Style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
 
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+		<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="CSS/flexboxgrid.css">
+		<link rel="stylesheet" type="text/css" href="CSS/Style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
+	</head>
 
-<section class="row">
-	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-		<div>
-			
-		</div>
-		<p>Income</p>
-		<p>Total Income</p>
-	</div>
+	<body>
 
-	<h2 class="height-80">Available budget in September 2016</h2>
-	<p class="mytotal">Total</p>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<p>Income</p>
-		<p>Total Income</p>
-	</div>
-	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-		<p>Expenses</p>
-		<p>Total Expenses</p>
-	</div>
-	
-</section>
-<section class="row space">
+		<section class="row top">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 budget">
+				<p class="title">Available budget in September 2016</p>
+				<p class="total">Total</p>
+				<div class="row income-show">
+					<p class="first">Income</p>
+					<p>Total Income</p>
+					<p>%</p>
+				</div>
+				<div class="row expenses-show">
+					<p class="first">Expenses</p>
+					<p>Total Expenses</p>
+					<p>%</p>
+				</div>
 
-	<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">This is article 1</article>
-	<article class="col-xs-6 col-sm-6 col-md-3 col-lg-3">this is article 2</article>
-	<article class="col-xs-6 col-sm-6 col-md-9 col-lg-9">this is article 3</article>
-	<article class="col-xs-6 col-sm-6 col-md-12 col-lg-12">this is article 4</article>
-	
-</section class="row">
+			</div>
+		</section>
 
-<section class="row">
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 1</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 2</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 3</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 4</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 5</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 6</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 7</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 8</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 9</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 10</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 11</article>
-	<article class="col-xs-1 col-sm-1 col-md-1 col-lg-1">col 12</article>
-</section>
-<section class="row">
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 1</article>
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 2</article>
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 3</article>
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 4</article>
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 5</article>
-	<article class="col-xs-2 col-sm-2 col-md-2 col-lg-2">col 6</article>
-</section>
-<section class="row">
-	<article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">col 1</article>
-	<article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">col 2</article>
-	<article class="col-xs-4 col-sm-4 col-md-4 col-lg-4">col 3</article>
-</section>
+		<section class="row middle">
+				<select name="dropdown" id="mydropdown">
+					<option value="plus" selected>+</option>
+					<option value="minus">-</option>
+				</select>
+				<input type="text" name="description" placeholder="Add description" class="my-description">
+				<input type="number" name="amount" placeholder="Value" min="0" class="my-amount">
+				<button class="add-button">
+					<i class="ion-ios-checkmark-outline"></i>
+				</button>
+		</section>
 
-</body>
+		<section class="row bottom">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+				<h3>income</h3>
+			</div>
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+				<h3>expense</h3>
+				<p>expense</p>
+			</div>
+		</section>
 
-<footer class="row">
-<p>This is the footer</p>
-</footer>
+	</body>
 
 </html>
