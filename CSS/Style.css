@@ -1,0 +1,19 @@
+/* This will hold all styles that are specific for the Budget APP*/
+
+.outline-all {
+	outline: 2px solid blue;
+	align-items: center;
+}
+
+.outline-all > * {
+}
+
+.height-80 {
+	flex: 0 0 50%;
+}
+
+.mytotal {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 25%;
+}

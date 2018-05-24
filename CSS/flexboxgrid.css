@@ -33,6 +33,7 @@
 	display: -webkit-box;
 	display: flex;
 	flex-direction: column;
+	flex-wrap: nowrap;
 }
 
 .row.reverse {
