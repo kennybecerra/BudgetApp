@@ -21,10 +21,11 @@
   flex-direction: row;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  /*
   margin-top: 1%;
   margin-bottom: 1%;
+  */
   justify-content: space-around;
-  outline: 2px dotted blue;
 }
 
 .column {
@@ -52,6 +53,9 @@
 
 .space {
 	justify-content: space-around;
+}
+.center {
+  justify-content: center;
 }
 
 .col-xs,

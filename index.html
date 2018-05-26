@@ -19,24 +19,24 @@
 				<p class="total">Total</p>
 				<div class="row income-show">
 					<p class="first">Income</p>
-					<p>Total Income</p>
-					<p>%</p>
+					<p class="total-income">+ 0.00</p>
+					<p class="total-income-percent">0%</p>
 				</div>
 				<div class="row expenses-show">
 					<p class="first">Expenses</p>
-					<p>Total Expenses</p>
-					<p>%</p>
+					<p class="total-expenses">+ 0.00</p>
+					<p class="total-expenses-percent">0%</p>
 				</div>
 
 			</div>
 		</section>
 
 		<section class="row middle">
-				<select name="dropdown" id="mydropdown">
+				<select name="dropdown" id="mydropdown" class="my-dropdown">
 					<option value="plus" selected>+</option>
 					<option value="minus">-</option>
 				</select>
-				<input type="text" name="description" placeholder="Add description" class="my-description">
+				<input type="text" name="description" placeholder="Add description" maxlength="25" class="my-description">
 				<input type="number" name="amount" placeholder="Value" min="0" class="my-amount">
 				<button class="add-button">
 					<i class="ion-ios-checkmark-outline"></i>
@@ -44,12 +44,47 @@
 		</section>
 
 		<section class="row bottom">
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 income">
 				<h3>income</h3>
+				<div class="row income-record">
+					<p class="item-description">Hellp</p>
+					<p class="item-amount">Total Income</p>
+					<p class="item-percent">50%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
+				<div class="row income-record">
+					<p class="item-description">Income</p>
+					<p class="item-amount">Total Income</p>
+					<p class="item-percent">50%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
+				<div class="row income-record">
+					<p class="item-description">Income</p>
+					<p class="item-amount">Total Income</p>
+					<p class="item-percent">50%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
 			</div>
-			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-				<h3>expense</h3>
-				<p>expense</p>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 expense">
+				<h3>expenses</h3>
+				<div class="row expenses-record">
+					<p class="item-description">Expenses</p>
+					<p class="item-amount">Total Expenses</p>
+					<p class="item-percent">60%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
+				<div class="row expenses-record">
+					<p class="item-description">Expenses</p>
+					<p class="item-amount">Total Expenses</p>
+					<p class="item-percent">60%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
+				<div class="row expenses-record">
+					<p class="item-description">Expenses</p>
+					<p class="item-amount">Total Expenses</p>
+					<p class="item-percent">60%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
 			</div>
 		</section>
 
