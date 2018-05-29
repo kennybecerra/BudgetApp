@@ -15,7 +15,7 @@
 
 		<section class="row top">
 			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 budget">
-				<p class="title">Available budget in September 2016</p>
+				<p class="title">Available budget in <span id="month">month</span> <span id="year">year</span></p>
 				<p class="total">Total</p>
 				<div class="row income-show">
 					<p class="first">Income</p>
@@ -46,19 +46,19 @@
 		<section class="row bottom">
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 income">
 				<h3>income</h3>
-				<div class="row income-record">
+				<div class="row income-record" id="inc-rec-1">
 					<p class="item-description">Hellp</p>
 					<p class="item-amount">Total Income</p>
 					<p class="item-percent">50%</p>
-					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+					<button class="delete-button" onclick="Testing1(this)"><i class="ion-ios-close-outline"></i></button>
 				</div>
-				<div class="row income-record">
+				<div class="row income-record" id="inc-rec-2">
 					<p class="item-description">Income</p>
 					<p class="item-amount">Total Income</p>
 					<p class="item-percent">50%</p>
 					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
 				</div>
-				<div class="row income-record">
+				<div class="row income-record" id="inc-rec-3">
 					<p class="item-description">Income</p>
 					<p class="item-amount">Total Income</p>
 					<p class="item-percent">50%</p>
@@ -67,19 +67,19 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 expense">
 				<h3>expenses</h3>
-				<div class="row expenses-record">
+				<div class="row expenses-record" id="exp-rec-1">
+					<p class="item-description">Expenses</p>
+					<p class="item-amount">Total Expenses</p>
+					<p class="item-percent">60%</p>
+					<button class="delete-button" onclick="Testing1(this)"><i class="ion-ios-close-outline"></i></button>
+				</div>
+				<div class="row expenses-record" id="exp-rec-2">
 					<p class="item-description">Expenses</p>
 					<p class="item-amount">Total Expenses</p>
 					<p class="item-percent">60%</p>
 					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
 				</div>
-				<div class="row expenses-record">
-					<p class="item-description">Expenses</p>
-					<p class="item-amount">Total Expenses</p>
-					<p class="item-percent">60%</p>
-					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
-				</div>
-				<div class="row expenses-record">
+				<div class="row expenses-record" id="exp-rec-3">
 					<p class="item-description">Expenses</p>
 					<p class="item-amount">Total Expenses</p>
 					<p class="item-percent">60%</p>
@@ -88,6 +88,8 @@
 			</div>
 		</section>
 
+
+	<script src="JS/MyJS.js"></script>
 	</body>
 
 </html>
