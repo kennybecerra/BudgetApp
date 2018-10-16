@@ -152,6 +152,7 @@ var controller = (function (Budgetctrl, UIctrl) {
 
   });
 
+  console.log("hello")
 
 })(budgetController, UIController);
 /* ------------ CONTROLLER END -----------  */
