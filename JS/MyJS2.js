@@ -25,6 +25,7 @@ var modelController = (function() {
             this.description = description;
             this.value = value;
             this.id = id;
+            this.percent = 0;
         }
 
         // Unique ID generator
@@ -40,9 +41,17 @@ var modelController = (function() {
             resetTotals();
             totalIncome = incomeRecords.length === 0 ? 0 : incomeRecords.reduce(function(accu, ele) { return (accu + ele.value)}, 0);
             totalExpenses =  expenseRecords.length === 0 ?  0 : expenseRecords.reduce(function(accu, ele) { return (accu + ele.value)}, 0);
-            incomePercent = (totalIncome/(totalIncome + totalExpenses)) * 100;
-            expensesPercent = (totalExpenses/(totalExpenses + totalIncome)) * 100;
+            incomePercent = Math.round((totalIncome/(totalIncome + totalExpenses)) * 10000) /100;
+            expensesPercent = Math.round((totalExpenses/(totalExpenses + totalIncome)) * 10000)/100;
             total = totalIncome - totalExpenses;
+
+            incomeRecords.forEach( function(current) {
+                current.percent = Math.round((current.value / totalIncome) * 10000) /100;
+            });
+
+            expenseRecords.forEach(function(current){
+                current.percent = Math.round((current.value / totalExpenses) * 10000) /100;
+            });
         }
 
         function resetTotals() {
@@ -99,6 +108,7 @@ var modelController = (function() {
             console.log(" income records : " + incomeRecords.length);
             console.log(" expense records : " + expenseRecords.length);
             console.log("*********** END ***********")
+            console.log(this);
         }
 
         
@@ -115,7 +125,24 @@ var modelController = (function() {
             totalExpenses: {
                 get: function() {return totalExpenses},
                 set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            incomePercent: {
+                get: function() {return incomePercent},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            expensesPercent: {
+                get: function() {return expensesPercent},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            incomeRecords: {
+                get: function() {return incomeRecords},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            expenseRecords: {
+                get: function() {return expenseRecords},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
             }
+
         });
     }
 
@@ -131,12 +158,64 @@ var viewController = (function() {
     var incomeContainer = document.querySelector('.income');
     var expenseContainer =  document.querySelector('.expense');
 
+    var dropdownContainer = document.getElementById('mydropdown');
+    var descriptionContainer = document.getElementById('description');
+    var amountContainer = document.getElementById('amount');
+
+    var dropdown = '';
+    var description = '';
+    var amount = 0;
+
     function View() {
 
-        this.renderRecord = function(sign, description, value, id) {
+        this.getRecordInfo = function() {
+            dropdown = dropdownContainer.value
+            description = descriptionContainer.value;
+            amount = parseFloat(parseFloat(amountContainer.value).toFixed(2));
+        }
+
+        this.renderRecord = function(sign, description, value, percent, id) {
+
+            var template = "";
+
+            if (sign === "+") {
+
+                template = `
+                <div class="row income-record" data-id=${id}>
+					<p class="item-description">${description}</p>
+					<p class="item-amount">${value}</p>
+					<p class="item-percent">${percent}%</p>
+					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+				</div>
+                `;
+            }
+            else if (sign == "-") {
+
+            }
+            else {
+                console.log("error occured when adding a record to the UI")
+            }
 
         } 
+
+        // DEFININING GETERS AND SETERS
+        Object.defineProperties(this, {
+            dropdown: {
+                get: function() {return dropdown;},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            description: {
+                get: function() {return description;},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            },
+            amount: {
+                get: function() {return amount},
+                set: function(value) {console.log("Not allowed to set this property"); return undefined}
+            }
+        });
     }
+
+    return new View();
 
 
 })();
