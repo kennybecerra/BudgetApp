@@ -81,7 +81,18 @@ var modelController = (function() {
             else {
                 console.log("Error sign was neither + or negative");
             }
+        }
 
+        this.getRecordInfo = function(id) {
+            if (incomeRecords.findIndex(searchCallback, {id: id}) !== -1) {
+                return JSON.parse(JSON.stringify(incomeRecords[incomeRecords.findIndex(searchCallback, {id: id})]));  
+            }
+            else if (expenseRecords.findIndex(searchCallback, {id: id}) !== -1) {
+                return JSON.parse(JSON.stringify(expenseRecords[expenseRecords.findIndex(searchCallback, {id: id})])); 
+            }
+            else {
+                return null;
+            }   
         }
 
         this.deleteRecord = function (id) {            
@@ -162,11 +173,27 @@ var viewController = (function() {
     var descriptionContainer = document.getElementById('description');
     var amountContainer = document.getElementById('amount');
 
+    var totalContainer = document.querySelector('.total');
+    var totalIncomeContainer = document.querySelector('.total-income');
+    var totalIncomePercentContainer = document.querySelector('.total-income-percent');
+    var totalExpensesContainer = document.querySelector('.total-expenses');
+    var totalExpensesPercentContainer = document.querySelector('.total-expenses-percent');
+    
+
+
     var dropdown = '';
     var description = '';
     var amount = 0;
 
     function View() {
+
+        this.setTotals = function(total = 0, totalIncome = 0, incomePercent = 0, totalExpenses = 0, expesnesPercent = 0) {
+            totalContainer.innerHTML = total;
+            totalIncomeContainer.innerHTML = `+ ${totalIncome}`;
+            totalIncomePercentContainer.innerHTML = `${incomePercent} %`;
+            totalExpensesContainer.innerHTML = `- ${totalExpenses}`;
+            totalExpensesPercentContainer.innerHTML = `${expesnesPercent} %`;
+        }
 
         this.getRecordInfo = function() {
             dropdown = dropdownContainer.value
@@ -175,28 +202,70 @@ var viewController = (function() {
         }
 
         this.renderRecord = function(sign, description, value, percent, id) {
+            var template =  `
+            <div class="row ${sign === '+' ? 'income':'expenses'}-record" data-id=${id}>
+                <p class="item-description">${description}</p>
+                <p class="item-amount">${value}</p>
+                <p class="item-percent">${percent}%</p>
+                <button class="delete-button"><i class="ion-ios-close-outline"></i></button>
+            </div>`;
 
-            var template = "";
-
+            
             if (sign === "+") {
-
-                template = `
-                <div class="row income-record" data-id=${id}>
-					<p class="item-description">${description}</p>
-					<p class="item-amount">${value}</p>
-					<p class="item-percent">${percent}%</p>
-					<button class="delete-button"><i class="ion-ios-close-outline"></i></button>
-				</div>
-                `;
+                incomeContainer.insertAdjacentHTML('beforeend', template);
+                console.log(this.findRecordButton(id));
+                var element = this.findRecordButton(id)
+                 element.onclick = function() {
+                    deleteRecord(id);
+                }
             }
             else if (sign == "-") {
-
+                expenseContainer.insertAdjacentHTML('beforeend', template);
+                console.log(this.findRecordButton(id));
+                var element = this.findRecordButton(id)
+                 element.onclick = function() {
+                    deleteRecord(id);
+                }
             }
             else {
                 console.log("error occured when adding a record to the UI")
             }
-
         } 
+
+        this.findRecordButton = function(id) {
+            Array.prototype.slice.call(incomeContainer.children).forEach(function (key) {
+                if (parseInt(key.dataset.id) === id) {
+                    var ele =  key.querySelector('.delete-button');
+                    return ele;
+                    //key.parentNode.removeChild(key);
+                }
+            });
+
+            Array.prototype.slice.call(expenseContainer.children).forEach(function (key) {
+                if (parseInt(key.dataset.id) === id) {
+                    var ele =  key.querySelector('.delete-button');
+                    return ele;
+                    //key.parentNode.removeChild(key);
+                }
+            });
+
+            return null;
+        }
+
+        function deleteRecord(id) {
+             
+            Array.prototype.slice.call(incomeContainer.children).forEach(function (key) {
+                if (parseInt(key.dataset.id) === id) {
+                    key.parentNode.removeChild(key);
+                }
+            });
+
+            Array.prototype.slice.call(expenseContainer.children).forEach(function (key) {
+                if (parseInt(key.dataset.id) === id) {
+                    key.parentNode.removeChild(key);
+                }
+            });
+        }
 
         // DEFININING GETERS AND SETERS
         Object.defineProperties(this, {
@@ -222,6 +291,8 @@ var viewController = (function() {
 
 var controller = (function() {
     
+
+
 })();
 
 
