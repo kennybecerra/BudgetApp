@@ -40,10 +40,13 @@ var modelController = (function() {
         function calculateBudget() {
             resetTotals();
             totalIncome = incomeRecords.length === 0 ? 0 : incomeRecords.reduce(function(accu, ele) { return (accu + ele.value)}, 0);
+            totalIncome = Math.round(totalIncome * 100) / 100;
             totalExpenses =  expenseRecords.length === 0 ?  0 : expenseRecords.reduce(function(accu, ele) { return (accu + ele.value)}, 0);
+            totalExpenses = Math.round(totalExpenses * 100) / 100;
             incomePercent = Math.round((totalIncome/(totalIncome + totalExpenses)) * 10000) /100;
             expensesPercent = Math.round((totalExpenses/(totalExpenses + totalIncome)) * 10000)/100;
             total = totalIncome - totalExpenses;
+            total = Math.round(total * 100) /100;
 
             incomeRecords.forEach( function(current) {
                 current.percent = Math.round((current.value / totalIncome) * 10000) /100;
@@ -166,6 +169,7 @@ var modelController = (function() {
 
 var viewController = (function() {
     
+    /* ALl of these variables return an Element object */
     var incomeContainer = document.querySelector('.income');
     var expenseContainer =  document.querySelector('.expense');
 
@@ -187,15 +191,53 @@ var viewController = (function() {
 
     function View() {
 
-        this.setTotals = function(total = 0, totalIncome = 0, incomePercent = 0, totalExpenses = 0, expesnesPercent = 0) {
-            totalContainer.innerHTML = total;
-            totalIncomeContainer.innerHTML = `+ ${totalIncome}`;
-            totalIncomePercentContainer.innerHTML = `${incomePercent} %`;
-            totalExpensesContainer.innerHTML = `- ${totalExpenses}`;
-            totalExpensesPercentContainer.innerHTML = `${expesnesPercent} %`;
+        /* PRIVATE FUNCTIONS */
+        function deleteRecord(id) {         
+            Array.prototype.forEach.call(incomeContainer.children, function (ele) {
+                if ( parseInt(ele.dataset.id) === id) {
+                    incomeContainer.removeChild(ele);
+                }
+            });
+
+            Array.prototype.forEach.call( expenseContainer.children, function (ele) {
+                if ( parseInt(ele.dataset.id) === id) {
+                    expenseContainer.removeChild(ele);
+                }
+            });
         }
 
-        this.getRecordInfo = function() {
+        /* PUBLIC FUNCTION TO BE USED BY THE CONTROLLER*/
+
+        this.setDeleteButton = function(id, callback) {
+            Array.prototype.forEach.call(incomeContainer.children, function (ele) {
+                if ( parseInt(ele.dataset.id) === id) {
+                    ele.querySelector('.delete-button').onclick = function() {
+                        deleteRecord(id);
+                        callback();
+                    }
+
+                }
+            });
+
+            Array.prototype.forEach.call(expenseContainer.children, function (ele) {
+                if ( parseInt(ele.dataset.id) === id) {
+                    ele.querySelector('.delete-button').onclick = function() {
+                        deleteRecord(id);
+                        callback();
+                    }
+                }
+            });
+        }
+
+        this.renderTotals = function(total = 0, totalIncome = 0, incomePercent = 0, totalExpenses = 0, expesnesPercent = 0) {
+            totalContainer.innerHTML = Number.isNaN(total) ? 0 : total;
+            totalIncomeContainer.innerHTML = Number.isNaN(totalIncome) ? 0 : `+ ${totalIncome}`;
+            totalIncomePercentContainer.innerHTML = Number.isNaN(incomePercent) ? "0 %" :  `${incomePercent} %`;
+            totalExpensesContainer.innerHTML =  Number.isNaN(totalExpenses) ? 0 : `- ${totalExpenses}`;
+            totalExpensesPercentContainer.innerHTML = Number.isNaN(expesnesPercent) ? "0 %" : `${expesnesPercent} %`;
+        }
+
+        this.getNewRecordInfo = function() {
             dropdown = dropdownContainer.value
             description = descriptionContainer.value;
             amount = parseFloat(parseFloat(amountContainer.value).toFixed(2));
@@ -209,61 +251,35 @@ var viewController = (function() {
                 <p class="item-percent">${percent}%</p>
                 <button class="delete-button"><i class="ion-ios-close-outline"></i></button>
             </div>`;
-
-            
             if (sign === "+") {
                 incomeContainer.insertAdjacentHTML('beforeend', template);
-                console.log(this.findRecordButton(id));
-                var element = this.findRecordButton(id)
-                 element.onclick = function() {
-                    deleteRecord(id);
-                }
+                //setDeleteButton(id);
             }
             else if (sign == "-") {
                 expenseContainer.insertAdjacentHTML('beforeend', template);
-                console.log(this.findRecordButton(id));
-                var element = this.findRecordButton(id)
-                 element.onclick = function() {
-                    deleteRecord(id);
-                }
+                //setDeleteButton(id);
             }
             else {
                 console.log("error occured when adding a record to the UI")
             }
         } 
 
-        this.findRecordButton = function(id) {
-            Array.prototype.slice.call(incomeContainer.children).forEach(function (key) {
-                if (parseInt(key.dataset.id) === id) {
-                    var ele =  key.querySelector('.delete-button');
-                    return ele;
-                    //key.parentNode.removeChild(key);
-                }
+        this.updateAllRecords = function(incomeArray, expenseArray) {
+
+            incomeArray.forEach(function(record) {
+                Array.prototype.forEach.call(incomeContainer.children, function (ele) {
+                    if ( parseInt(ele.dataset.id) === record.id) {
+                        ele.querySelector('.item-percent').innerHTML = `${record.percent} %`;
+                    }
+                });
             });
 
-            Array.prototype.slice.call(expenseContainer.children).forEach(function (key) {
-                if (parseInt(key.dataset.id) === id) {
-                    var ele =  key.querySelector('.delete-button');
-                    return ele;
-                    //key.parentNode.removeChild(key);
-                }
-            });
-
-            return null;
-        }
-
-        function deleteRecord(id) {
-             
-            Array.prototype.slice.call(incomeContainer.children).forEach(function (key) {
-                if (parseInt(key.dataset.id) === id) {
-                    key.parentNode.removeChild(key);
-                }
-            });
-
-            Array.prototype.slice.call(expenseContainer.children).forEach(function (key) {
-                if (parseInt(key.dataset.id) === id) {
-                    key.parentNode.removeChild(key);
-                }
+            expenseArray.forEach(function(record) {
+                Array.prototype.forEach.call(expenseContainer.children, function (ele) {
+                    if ( parseInt(ele.dataset.id) === record.id) {
+                        ele.querySelector('.item-percent').innerHTML = `${record.percent} %`;
+                    }
+                });
             });
         }
 
@@ -289,10 +305,28 @@ var viewController = (function() {
 
 })();
 
-var controller = (function() {
-    
+var controller = (function( model, view) {
+    view.renderTotals();
+    document.getElementById('button').addEventListener('click', function () {
+        var recordID = 0;
+        var record = {}; 
+        view.getNewRecordInfo();
+        recordID = model.addRecord(view.dropdown, view.description, view.amount);
+        record = model.getRecordInfo(recordID);
+        view.renderRecord(record.sign , record.description, record.value, record.percent, record.id);
+        view.setDeleteButton(recordID, runUpdate);
+        view.updateAllRecords(model.incomeRecords , model.expenseRecords);
+        view.renderTotals(model.total, model.totalIncome, model.incomePercent, model.totalExpenses, model.expensesPercent);
 
 
-})();
+        function runUpdate() {
+            //console.log(model.incomeRecords);
+            model.deleteRecord(recordID);
+            view.updateAllRecords(model.incomeRecords , model.expenseRecords);
+            view.renderTotals(model.total, model.totalIncome, model.incomePercent, model.totalExpenses, model.expensesPercent);
+        };
+    });
+
+})(modelController, viewController);
 
 
