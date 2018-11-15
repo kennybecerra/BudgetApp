@@ -1,0 +1,93 @@
+.top {
+  background-image: url(../assets/images/back.png);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.budget {
+    width: 40%; 
+    min-width: 300px;
+    max-width: 400px;
+    padding: 1em 0px;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.total {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.income-show,
+.expenses-show {
+  
+    width: 100%;
+    margin: .5em 0px;
+    padding: 1em 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.income-show {
+    background-color: #28b9b5;
+}
+
+.expenses-show {
+    background-color: #ff5049;
+}
+
+.first {
+    margin: 0px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+
+    font-size: 1.8rem;
+    margin-right: auto;
+    padding-left: 10px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.total-income,
+.total-expenses {
+    font-size: 1.8rem;
+    margin: 0px;  
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    padding: 0 10px;
+}
+
+.total-income-percent,
+.total-expenses-percent {
+    margin: 0px;  
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0 10px;
+}
+
+.total-expenses-percent,
+.total-income-percent {
+    margin: 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+}

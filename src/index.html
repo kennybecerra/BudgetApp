@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Budget App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+       <section class="top">
+            <div class="budget">
+                <p class="title">Available budget in <span id="month">month</span> <span id="year">year</span></p>
+                <p class="total">Total</p>
+                <div class="income-show">
+                    <p class="first">Income</p>
+                    <p class="total-income">+ 0.00</p>
+                    <p class="total-income-percent">0%</p>
+                </div>
+                <div class="expenses-show">
+                    <p class="first">Expenses</p>
+                    <p class="total-expenses">+ 0.00</p>
+                    <p class="total-expenses-percent">0%</p>
+                </div>
+
+            </div>
+       </section>
+       <section class="middle">
+           <form action="" class="form">
+                <select name="dropdown" id="mydropdown" class="my-dropdown">
+                        <option value="+" selected>+</option>
+                        <option value="-">-</option>
+                    </select>
+                <input type="text" id="description" name="description" placeholder="Add description" maxlength="25" class="my-description">
+                <input type="number" id="amount" name="amount" placeholder="Value" min="0" max="100000" class="my-amount">
+                <button type="button" class="add-button" id="button">
+                    <svg class="add-button__icon">
+                        <use href="./assets/SVG/symbol-defs.svg#icon-checkmark-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-checkmark-outline"></use>
+                    </svg>
+                </button>
+           </form>
+       </section>
+       <section class="bottom">
+            <div class="income">
+                <h3 class="income__title">income</h3>
+                <!--
+                <div class="income-record" id="inc-rec-1">
+                    <p class="item-description">Hellp</p>
+                    <p class="item-amount">Total Income</p>
+                    <p class="item-percent">50%</p>
+                    <button type="button" class="delete-button">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="income-record" id="inc-rec-2">
+                    <p class="item-description">Income</p>
+                    <p class="item-amount">Total Income</p>
+                    <p class="item-percent">50%</p>
+                    <button type="button" class="delete-button">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="income-record" id="inc-rec-3">
+                    <p class="item-description">Income</p>
+                    <p class="item-amount">Total Income</p>
+                    <p class="item-percent">50%</p>
+                    <button type="button" class="delete-button">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                -->
+            </div>
+            <div class="expense">
+                <h3 class="expense__title">expenses</h3>
+                <!--
+                <div class="expenses-record" id="exp-rec-1">
+                    <p class="item-description">Expenses</p>
+                    <p class="item-amount">Total Expenses</p>
+                    <p class="item-percent">60%</p>
+                    <button type="button" class="delete-button" onclick="Testing1(this)">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="expenses-record" id="exp-rec-2">
+                    <p class="item-description">Expenses</p>
+                    <p class="item-amount">Total Expenses</p>
+                    <p class="item-percent">60%</p>
+                    <button type="button" class="delete-button">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="expenses-record" id="exp-rec-3">
+                    <p class="item-description">Expenses</p>
+                    <p class="item-amount">Total Expenses</p>
+                    <p class="item-percent">60%</p>
+                    <button type="button" class="delete-button">
+                        <svg class="delete-button__icon">
+                            <use href="./assets/SVG/symbol-defs.svg#icon-close-outline" xlink:href="./assets/SVG/symbol-defs.svg#icon-close-outline"></use>
+                        </svg>
+                    </button>
+                </div>
+                -->
+            </div>
+       </section>
+    </main>
+</body>
+</html>
