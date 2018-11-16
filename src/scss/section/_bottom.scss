@@ -1,10 +1,17 @@
 .bottom {
-  max-width: 100%;
+  width: 100%;
+  max-width: 1200px;
   margin: auto;
 
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+
+  @include ResponsiveDesktopFirst(tab-port) {
+      width: 90%;
+      flex-direction: column;
+      align-items:  stretch;
+  }
 }
 
 .income {
@@ -13,12 +20,17 @@
     padding: 1em;
 
   &__title {
-    
     font-size: 2rem;
+    font-weight: 400;
     margin: 1em 0px;
     text-transform: uppercase;
     color: #28b9b5;
   }
+
+  @include ResponsiveDesktopFirst(tab-port) {
+    flex-basis: 90%;
+  }
+
 }
 
 .expense {
@@ -27,9 +39,14 @@
 
     &__title {
         font-size: 2rem;
+        font-weight: 400;
         margin: 1em 0px;
         text-transform: uppercase;
         color: #ff5049;
+    }
+
+    @include ResponsiveDesktopFirst(tab-port) {
+      flex-basis: 80%;
     }
 }
 
